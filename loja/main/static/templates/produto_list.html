@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main class="container my-4">
+	<div class="row">
+		<!-- Filters -->
+		<div class="col-md-3">
+			{% include 'filters.html' %}
+		</div>
+		<div class="col-md-9">
+			
+			<h3 class="mb-4 border-bottom pb-1">
+
+				Todos Produtos
+			</h3>
+			<div class="row" id="filteredProducts">
+				<p class="ajaxLoader"> </p>
+				{% for cat in categorias %}
+				<h1>{{cat.titulo}}</h1>
+				<div class="row">
+					
+						{%for  produto in cat.produto_set.all %}
+						
+							<div class="col-lg-4 col-md-6 mb-4 product-box">
+							
+								<div class="card shadow">
+									<h5 style=" font-family:'Work Sans', Black 900 Italic" class="ml-5 mt-2 center">  {{produto.titulo}} <span class="ml-2"></span></h5>
+									<a href="/detalhe/{{produto.id}}"><img src="{{ MEDIA_URL }}produto_img/{{produto.titulo}}.jpg" class="card-img-top m-lg-2" alt="{{produto.title}}" style="width: 230px; height: 150px;" ></a>
+									<div class="card-body">
+									<h5 class="card-text"><a href="/product/{{produto.slug}}/{{produto.id}}">{{produto.title}}</a></h5>
+									<h6 style=" font-family: 'Work Sans', Black 900 Italic">Valor de Antigo <strike> R$     {{produto.preco_mercado }} </strike> <span class=""></span></h6>
+									<h6 style=" font-family: 'Work Sans', Black 900 Italic"> Valor Agora R$  {{produto.venda }} <span class=""></span></h6>
+									</div>
+									<div class="card-footer">
+										
+											<button class="btn btn-sm btn-primary add-to-cart" data-index=""><i class="fa fa-shopping-cart"></i></button>
+											<button class="btn btn-sm btn-danger"><i class="fa fa-heart"></i></button>
+											<button class="btn btn-sm btn-success add-to-cart" data-index="{{produto.id}}"><i style="font-size:19px" class="fa">&#xf155;</i></button>
+
+											<span class="float-right">
+												4.5/5
+												<i class="fa fa-star text-warning"></i>
+											</span>
+									</div>
+								</div>
+							</div>
+									
+						{% endfor %}
+						</div>
+				</div>
+				{% endfor %}
+			</div>
+			<p class="my-4 text-center"><button id="loadMore" data-total="" data-limit="3" class="btn btn-dark btn-sm">Carregar + <i class="fa fa-sync load-more-icon"></i></button></p>
+		</div>
+	</div>
+</main>
+{% endblock %}

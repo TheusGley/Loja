@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@500&display=swap" rel="stylesheet">
+
+<div class="container text-center">
+    <div class="row align-items-start">
+        <div class="col">
+            <img src="{{ MEDIA_URL }}produto_img/{{produto.titulo}}.jpg" class="img-fluid" alt="{{produto.titulo}}" style="margin-top:10px; width :550; height:500px;">
+        </div>
+        <div class="col ml-5">
+           <div class="row" >
+            <div class="card" style=" margin-top:10px; width: 30rem; height:30rem ;">
+                <div class="card-body">
+                    <h1 style=" font-family: 'Geologica', sans-serif;"> {{produto.titulo}} </h1>
+                  <h6 class="card-subtitle mb-2 text-body-secondary" >{{produto.slug }}</h6>
+                  <p class= "card-text"> <strike> R$ {{produto.preco_mercado}} </strike></p>
+                  <h2 style= "font-family: 'Geologica', sans-serif;">Por {{produto.venda}} </h2>
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+                <div class="card-footer">
+										
+                    <button class="btn btn-sm btn-primary add-to-cart" data-index=""><i class="fa fa-shopping-cart"></i></button>
+                    <button class="btn btn-sm btn-danger"><i class="fa fa-heart"></i></button>
+                    <button class="btn btn-sm btn-success add-to-cart" data-index="{{produto.id}}"><i style="font-size:19px" class="fa">&#xf155;</i></button>
+
+                    <span class="float-right">
+                        4.5/5
+                        <button style="border: none; padding: 4px; background-color: transparent;" onclick="toggleSelection('myIcon22')"><ii id="icon" class="bi bi-star text-warning" onclick="changeIconClass()"></i></button>
+                        <button style="border: none; padding: 4px; background-color: transparent;" onclick="toggleSelection('myIcon2')"> <i id="icon" class="bi bi-star text-warning" onclick="changeIconClass()"></i></button>
+                        <button style="border: none; padding: 4px; background-color: transparent;" onclick="toggleSelection('myIcon3')"> <i id="icon" class="bi bi-star text-warning" onclick="changeIconClass()"></i></button>
+                        <button style="border: none; padding: 4px; background-color: transparent;" onclick="toggleSelection('myIcon4')"> <i id="icon" class="bi bi-star text-warning" onclick="changeIconClass()"></i></button>
+                        <button style="border: none; padding: 4px; background-color: transparent;" onclick="toggleSelection('myIcon5')"> <i id="icon" class="bi bi-star text-warning" onclick="changeIconClass()"></i></button>
+
+                  
+
+                        <i id="icon" class="bi bi-star text-warning" onclick="changeIconClass()"></i>
+
+                        <script>
+                          function changeIconClass() {
+                            var icon = document.getElementById("icon");
+
+                            if (icon.classList.contains("bi","bi-star", "text-warning")) {
+                                // Remove a classe caso já esteja presente
+                
+                                icon.classList.remove("bi","bi-star");
+                                icon.classList.add("fa","fa-star", "text-warning");
+                              
+
+                                
+
+                              } else {
+                                // Adiciona a classe caso não esteja presente
+                                icon.classList.add("bi","bi-star");
+
+                              }
+                          }
+                            
+                        </script>
+                        
+                       
+
+  
+            </div>
+               
+            </div>
+
+        </div>
+    </div>
+  </div>
+
+  
+{%endblock%}
+
+
